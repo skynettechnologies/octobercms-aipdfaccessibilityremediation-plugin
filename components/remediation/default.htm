@@ -1,0 +1,10 @@
+{% if not __SELF__.canUse %}
+    <p class="aiopdf-notice">Please sign in to use the PDF remediation workspace.</p>
+{% else %}
+    <script>
+        // Endpoints only. The auth code stays server-side — see Classes\ApiClient.
+        window.AIOPDF_CONFIG = {{ __SELF__.browserConfig|raw }};
+    </script>
+
+    {{ __SELF__.workspaceHtml|raw }}
+{% endif %}

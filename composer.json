@@ -1,0 +1,23 @@
+{
+    "name": "skynettechnologies/aipdfaccessibilityremediation-plugin",
+    "type": "october-plugin",
+    "description": "AI PDF Accessibility Remediation — upload or crawl for PDFs, run AI accessibility remediation, review per-check findings and download WCAG / PDF-UA conformant files.",
+    "homepage": "https://www.skynettechnologies.com/pdf-accessibility-remediation",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Skynet Technologies USA LLC",
+            "email": "hello@skynettechnologies.com",
+            "homepage": "https://www.skynettechnologies.com"
+        }
+    ],
+    "keywords": [
+        "octobercms", "october", "pdf", "accessibility", "remediation",
+        "wcag", "pdf-ua", "ada", "section508", "aoda", "en301549"
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "composer/installers": "~1.0 || ~2.0"
+    }
+}

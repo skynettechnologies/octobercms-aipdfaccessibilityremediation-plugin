@@ -1,0 +1,6 @@
+<script>
+    // Endpoints only. The auth code stays server-side — see Classes\ApiClient.
+    window.AIOPDF_CONFIG = <?= json_encode($browserConfig, JSON_UNESCAPED_SLASHES) ?>;
+</script>
+
+<?php include base_path('plugins/skynettechnologies/aipdfaccessibilityremediation/partials/workspace.htm') ?>
