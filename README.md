@@ -1,22 +1,8 @@
-# AI PDF Accessibility Remediation: October CMS Plugin
+The **AI PDF Accessibility Remediation Application** brings **PDF Accessibility Remediation for WCAG & PDF/UA Compliance** directly into your October CMS backend. It is both a **PDF Accessibility Checker** and an **AI Remediation Tool**: upload documents or crawl your website for them, let AI repair the accessibility barriers automatically, review every check that was applied, and download conformant files — without leaving your CMS.
 
-## Overview
+It fixes the barriers that make PDFs unusable with assistive technology: missing tags, incorrect reading order, inaccessible forms and tables, images without alternate text, and absent document structure, language and metadata.
 
-The **AI PDF Accessibility Remediation Application** brings **PDF Accessibility
-Remediation for WCAG & PDF/UA Compliance** directly into your October CMS
-backend. It is both a **PDF Accessibility Checker** and an **AI Remediation
-Tool**: upload documents or crawl your website for them, let AI repair the
-accessibility barriers automatically, review every check that was applied, and
-download conformant files — without leaving your CMS.
-
-It fixes the barriers that make PDFs unusable with assistive technology: missing
-tags, incorrect reading order, inaccessible forms and tables, images without
-alternate text, and absent document structure, language and metadata.
-
-It supports compliance with **WCAG 2.0, 2.1, 2.2, PDF/UA, ADA, Section 508,
-AODA, and EN 301 549 (EAA)**. With plain-language explanations and before/after
-examples for every check, even non-technical users can understand what was fixed
-and why it mattered.
+It supports compliance with **WCAG 2.0, 2.1, 2.2, PDF/UA, ADA, Section 508, AODA, and EN 301 549 (EAA)**. With plain-language explanations and before/after examples for every check, even non-technical users can understand what was fixed and why it mattered.
 
 This plugin is designed for:
 
@@ -50,7 +36,6 @@ project.
 - **Deep Tag Scan** – Post-remediation verification against the document's tag tree, not just its declared metadata.
 - **Authenticated Downloads** – Remediated files are delivered over an authenticated session, never a public link.
 - **Zero Configuration** – No settings screen and no API keys to paste; the plugin registers your site automatically on first use.
-- **Backend and Frontend** – Use it in the October backend, or place it on a CMS page with the supplied component.
 - **Integration with All in One Accessibility® Dashboard** – Plans, usage and billing stay in one place.
 
 ## Compliance Standards Supported
@@ -138,94 +123,17 @@ To avoid CORS policy issues, ensure the following URLs are allowed in your websi
 
 ### Configuration
 
-- There is no settings screen. Everything the plugin needs is pinned in
-  `classes/Config.php` or derived from your site, so it works the moment it is
+- There is no settings screen. Everything the plugin needs is derived from your site, so it works the moment it is
   installed. Open **AI PDF Accessibility Remediation** from the main menu to
   start using it.
 
-| Constant | Default |
-|---|---|
-| `API_BASE_URL` | `https://livepdfapi.skynettechnologies.us` |
-| `DASHBOARD_URL` | `https://ada.skynettechnologies.us` |
-| `PROVISION_API_KEY` | `PDF-REMEDATION-PLAN-CHECK` |
-| `PLAN_ID` | `free` |
-| `COUNTRY` | `US` |
-| `WEBSITE` | empty — uses the host the site is served from. A bare host or a full URL are both accepted. |
-| `SHARED_ACCOUNT_EMAIL` | empty — see below |
-| `ACTIVE_DOMAIN` | empty — follows the account's first domain |
-| `TIMEOUT` / `VERIFY_SSL` | `30` seconds / `true` |
-
-**Account registration.** On first use the plugin registers your site with the
-remediation service and opens a session, in a single server-side call — the API
-key never reaches the browser:
-
-```
-POST {API_BASE_URL}/api/billing/provision-account
-     X-Api-Key: <PROVISION_API_KEY>
-     { name, email, company_name, website, plan_id, country }
-  -> { token, user, isNewToApp, orderId }
-```
-
-The call is idempotent, so repeat visits reuse the same account rather than
-creating duplicates. `website` is the host your site is served from, and `email`
-is the signed-in administrator's address, falling back to `noreply@<host>`.
-
-> **Multiple administrators.** The account is keyed on the signed-in
-> administrator's email, so each administrator gets a separate document library.
-> To give a whole site one shared library, set `SHARED_ACCOUNT_EMAIL` in
-> `classes/Config.php`.
-
-**Changing `WEBSITE` on a live install.** Editing the constant is enough — no
-version bump and no re-upload of the whole plugin. Two things can make the
-change look like it did not take:
-
-- **PHP OPcache.** On a production server the compiled file is cached. Reload
-  PHP-FPM (`sudo systemctl reload php-fpm`) or restart Apache after editing, or
-  the old value keeps being used.
-- **The browser's cached session.** The page stores its session token in
-  `localStorage`, so it would otherwise keep using the previous account until
-  that token expired. The plugin now sends an account fingerprint with the page
-  and discards the stored token whenever it changes, so a reload is enough.
-
-**Upgrading a plan.** When the selected PDFs exceed the plan's remaining pages,
-the coverage modal's *Recommended Plan* button opens the dashboard's autologin
-link for your site — `{DASHBOARD_URL}/front/autologin/{base64 host}` — so there
-is no second login to get through. The link opens in a new tab.
-
-**Permissions.** Grant `skynettechnologies.aipdfaccessibilityremediation.access_documents`
-to any backend role that should use the workspace.
-
-**Frontend component.** To run the workspace on a CMS page instead of the
-backend, add the component to a page. It requires a signed-in visitor, since a
-session grants access to every document on the account:
-
-```
-url = "/pdf-remediation"
-layout = "default"
-==
-{% component 'aiPdfAccessibilityRemediation' %}
-```
 
 ## Screenshots
 
-_Screenshots pending._ Publish the images, then uncomment the lines below and
-point them at the real asset URLs — the paths here follow the naming used by our
-other October CMS plugin and do not exist yet.
+![AI_PDF_Accessibility_Remediation_Image_1](https://www.skynettechnologies.com/sites/default/files/AiPdfAccessibilityRemediation/AI_PDF_Accessibility_Remediation_Image_1.png)
+![AI_PDF_Accessibility_Remediation_Image_2](https://www.skynettechnologies.com/sites/default/files/AiPdfAccessibilityRemediation/AI_PDF_Accessibility_Remediation_Image_2.png)
+![AI_PDF_Accessibility_Remediation_Image_3](https://www.skynettechnologies.com/sites/default/files/AiPdfAccessibilityRemediation/AI_PDF_Accessibility_Remediation_Image_3.png)
 
-<!--
-![AI_PDF_Accessibility_Remediation_Image_1](https://www.skynettechnologies.com/sites/default/files/AiPdfAccessibilityRemediation/AI_PDF_Accessibility_Remediation_Image_1.jpg)
-![AI_PDF_Accessibility_Remediation_Image_2](https://www.skynettechnologies.com/sites/default/files/AiPdfAccessibilityRemediation/AI_PDF_Accessibility_Remediation_Image_2.jpg)
-![AI_PDF_Accessibility_Remediation_Image_3](https://www.skynettechnologies.com/sites/default/files/AiPdfAccessibilityRemediation/AI_PDF_Accessibility_Remediation_Image_3.jpg)
--->
-
-## Video
-
-_Video pending._ Add the walkthrough here in the same form the Scanner plugin
-uses:
-
-<!--
-[![AI PDF Accessibility Remediation](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
--->
 
 ## Submit a Support Request
 
