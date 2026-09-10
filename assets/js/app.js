@@ -37,8 +37,8 @@
 
     /** Pending action for the confirmation modal. */
     confirm: null,
-    /** Pending action for the partial-coverage modal. */
-    partial: null,
+    /** Pending state for the plan coverage dialog. */
+    coverage: null,
     loaders: 0
   };
 
@@ -670,6 +670,11 @@
    * =================================================================== */
   function startRemediation(allowPartial) {
     var docs = selectedReady();
+    // Kept for the coverage dialog: the service usually reports the page count
+    // back, but when it does not this is the same number the footer showed.
+    var pageCount = docs.reduce(function (sum, d) {
+      return sum + (d.pages || 0);
+    }, 0);
     if (!docs.length) {
       toast('Select at least one scanned document that is ready to remediate.', 'error');
       return;
@@ -689,10 +694,13 @@
         refreshCurrentTable();
       })
       .catch(function (e) {
+        // The service reports both of these when a run cannot proceed as asked.
+        // Each opens the coverage dialog, which carries the upgrade link — a
+        // toast would state the problem and offer no way out of it.
         if (e && e.code === 'PAGE_LIMIT') {
-          toast("You've used all pages in your plan — upgrade to continue.", 'error');
+          openCoverageModal(0, e.data.totalPages || pageCount, true);
         } else if (e && e.code === 'PARTIAL_REQUIRED') {
-          openPartialModal(e.data.pagesRemaining || 0, e.data.totalPages || 0);
+          openCoverageModal(e.data.pagesRemaining || 0, e.data.totalPages || pageCount, false);
         } else {
           handleRequestError(e, 'Could not start remediation.');
         }
@@ -893,27 +901,61 @@
   /* =================================================================== *
    * Partial coverage modal (port of PartialCoverageModal.tsx)
    * =================================================================== */
-  function openPartialModal(coveredPages, totalPages) {
+  /**
+   * Opens the plan coverage dialog.
+   *
+   * Two cases share this dialog, because both end in the same decision — upgrade
+   * or not — and both want the recommended plan and the autologin button:
+   *
+   *   partial    the plan covers some of the selection, so continuing with the
+   *              covered pages is offered alongside upgrading;
+   *   exhausted  the plan has no pages left, so there is nothing to continue
+   *              with and only the upgrade path is shown.
+   *
+   * @param {Number} coveredPages Pages the current plan can still process.
+   * @param {Number} totalPages Pages the selection contains.
+   * @param {Boolean} exhausted Whether the plan has no pages remaining at all.
+   */
+  function openCoverageModal(coveredPages, totalPages, exhausted) {
     var modal = $('partialModal');
     var isFree = state.user && state.user.planId === 'free';
+    var acceptRow = modal.querySelector('[data-role="accept-row"]');
+    var continueBtn = modal.querySelector('[data-role="continue"]');
+    var actions = modal.querySelector('[data-role="actions"]');
 
-    state.partial = { covered: coveredPages, total: totalPages };
+    state.coverage = { covered: coveredPages, total: totalPages, exhausted: Boolean(exhausted) };
 
-    modal.querySelector('[data-role="title"]').textContent = isFree
-      ? 'Free trial covers the first ' + coveredPages + ' pages'
-      : 'Your current plan covers ' + coveredPages + ' of ' + totalPages + ' pages';
+    if (exhausted) {
+      modal.querySelector('[data-role="title"]').textContent = isFree
+        ? 'Your free trial has used all its pages'
+        : 'You have used all the pages in your plan';
 
-    modal.querySelector('[data-role="body"]').textContent =
-      'Your PDF' + (totalPages === coveredPages ? '' : 's') + ' contain ' + totalPages +
-      ' pages. Upgrade to process all pages, or continue with the ' + coveredPages +
-      ' pages included in your current plan.';
+      modal.querySelector('[data-role="body"]').textContent =
+        'This selection needs ' + totalPages + ' page' + (totalPages === 1 ? '' : 's') +
+        ', and your ' + (isFree ? 'free trial' : 'current plan') +
+        ' has none remaining. Upgrade to carry on remediating.';
+    } else {
+      modal.querySelector('[data-role="title"]').textContent = isFree
+        ? 'Free trial covers the first ' + coveredPages + ' pages'
+        : 'Your current plan covers ' + coveredPages + ' of ' + totalPages + ' pages';
 
-    modal.querySelector('[data-role="accept-label"]').textContent =
-      'Continue with my ' + (isFree ? 'free plan' : 'current plan') + ' (' + coveredPages + ' pages)';
+      modal.querySelector('[data-role="body"]').textContent =
+        'Your PDF' + (totalPages === coveredPages ? '' : 's') + ' contain ' + totalPages +
+        ' pages. Upgrade to process all pages, or continue with the ' + coveredPages +
+        ' pages included in your current plan.';
 
-    var accept = modal.querySelector('[data-role="accept"]');
-    accept.checked = false;
-    modal.querySelector('[data-role="continue"]').disabled = true;
+      modal.querySelector('[data-role="accept-label"]').textContent =
+        'Continue with my ' + (isFree ? 'free plan' : 'current plan') + ' (' + coveredPages + ' pages)';
+    }
+
+    // With no pages left there is nothing to continue with, so the whole
+    // "carry on with what I have" path is taken off the dialog rather than
+    // shown disabled — a checkbox that can never help is only noise.
+    modal.querySelector('[data-role="accept"]').checked = false;
+    continueBtn.disabled = true;
+    show(acceptRow, !exhausted);
+    show(continueBtn, !exhausted);
+    actions.style.justifyContent = exhausted ? 'center' : 'space-between';
 
     var pill = modal.querySelector('[data-role="recommended"]');
     var plan = API.recommendPlan(state.plans, totalPages);
@@ -928,8 +970,8 @@
     show(modal, true);
   }
 
-  function closePartial() {
-    state.partial = null;
+  function closeCoverageModal() {
+    state.coverage = null;
     show($('partialModal'), false);
   }
 
@@ -1174,7 +1216,7 @@
     var partialModal = $('partialModal');
     partialModal.addEventListener('click', function (e) {
       if (e.target === partialModal) {
-        closePartial();
+        closeCoverageModal();
         return;
       }
       if (e.target.closest('[data-role="upgrade"]')) {
@@ -1190,7 +1232,7 @@
         return;
       }
       if (e.target.closest('[data-role="continue"]')) {
-        closePartial();
+        closeCoverageModal();
         startRemediation(true);
       }
     });
@@ -1201,7 +1243,7 @@
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
       closeConfirm();
-      closePartial();
+      closeCoverageModal();
       show($('suggestionsModal'), false);
     });
   }
