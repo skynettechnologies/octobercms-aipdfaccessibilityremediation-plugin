@@ -28,7 +28,7 @@ project.
 
 ## Key Features
 
-- **SkynetA11y PDF Remediation** – Automated repair of tags, reading order, alt text, headings, tables and metadata.
+- **AI PDF Remediation** – Automated repair of tags, reading order, alt text, headings, tables and metadata.
 - **PDF Accessibility Checker** – Every check reported individually, expandable to a plain-language explanation and a before/after example.
 - **Upload or Crawl** – Add files by drag and drop, add a PDF by URL, or sweep your website for every linked PDF.
 - **Free Trial** – The free plan covers your first 5 pages; paid plans scale from 50 to 10,000 pages.
@@ -74,26 +74,26 @@ project.
 
 ## Install Plugin
 
-- Plugin:install - downloads and installs the plugin by its name. The next example will install a plugin called SkynetTechnologies.SkynetA11yPDFRemediation.
+- Plugin:install - downloads and installs the plugin by its name. The next example will install a plugin called SkynetTechnologies.AiPdfAccessibilityRemediation.
 
 ``` bash
-php artisan plugin:install skynettechnologies.skyneta11ypdfremediation
+php artisan plugin:install skynettechnologies.aipdfaccessibilityremediation
 ```
 
 - You may install a plugin from a remote source using the --from option.
 
 ``` bash
-php artisan plugin:install skynettechnologies.skyneta11ypdfremediation --from=git@github.com:skynettechnologies/octobercms-skyneta11ypdfremediation.git
+php artisan plugin:install skynettechnologies.aipdfaccessibilityremediation --from=git@github.com:skynettechnologies/octobercms-aipdfaccessibilityremediation.git
 ```
 
 - Use the --want option to specify a target branch or version.
 
 ``` bash
-php artisan plugin:install skynettechnologies.skyneta11ypdfremediation --from=git@github.com:skynettechnologies/octobercms-skyneta11ypdfremediation.git --want=dev-main
+php artisan plugin:install skynettechnologies.aipdfaccessibilityremediation --from=git@github.com:skynettechnologies/octobercms-aipdfaccessibilityremediation.git --want=dev-main
 ```
 
 - To install from a copy of this repository, place the plugin at
-  `plugins/skynettechnologies/skyneta11ypdfremediation` and run:
+  `plugins/skynettechnologies/aipdfaccessibilityremediation` and run:
 
 ``` bash
 php artisan october:migrate
@@ -111,7 +111,7 @@ To avoid CORS policy issues, ensure the following URLs are allowed in your websi
 
 | **Domain**                                   | **Description**                     | **Usage**                              |
 |----------------------------------------------|-------------------------------------|----------------------------------------|
-| `https://livepdfapi.skynettechnologies.us`  | SkynetA11y PDF Remediation API | Documents, remediation jobs, downloads |
+| `https://livepdfapi.skynettechnologies.us`  | SkynetA11y PDF Remediation API              | Documents, remediation jobs, downloads |
 | `https://ada.skynettechnologies.us` | All in One Accessibility® Dashboard | Plan upgrades via autologin            |
 
 ## Instructions

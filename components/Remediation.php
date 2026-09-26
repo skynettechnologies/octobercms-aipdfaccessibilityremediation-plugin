@@ -1,8 +1,8 @@
-<?php namespace SkynetTechnologies\SkynetA11yPDFRemediation\Components;
+<?php namespace SkynetTechnologies\AiPdfAccessibilityRemediation\Components;
 
 use Cms\Classes\ComponentBase;
-use SkynetTechnologies\SkynetA11yPDFRemediation\Classes\ApiClient;
-use SkynetTechnologies\SkynetA11yPDFRemediation\Classes\Config;
+use SkynetTechnologies\AiPdfAccessibilityRemediation\Classes\ApiClient;
+use SkynetTechnologies\AiPdfAccessibilityRemediation\Classes\Config;
 
 /**
  * Renders the remediation workspace on a CMS page.
@@ -15,8 +15,8 @@ class Remediation extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'skynettechnologies.skyneta11ypdfremediation::lang.component.name',
-            'description' => 'skynettechnologies.skyneta11ypdfremediation::lang.component.description',
+            'name'        => 'skynettechnologies.aipdfaccessibilityremediation::lang.component.name',
+            'description' => 'skynettechnologies.aipdfaccessibilityremediation::lang.component.description',
         ];
     }
 
@@ -24,8 +24,8 @@ class Remediation extends ComponentBase
     {
         return [
             'activeDomain' => [
-                'title'       => 'skynettechnologies.skyneta11ypdfremediation::lang.component.active_domain',
-                'description' => 'skynettechnologies.skyneta11ypdfremediation::lang.component.active_domain_desc',
+                'title'       => 'skynettechnologies.aipdfaccessibilityremediation::lang.component.active_domain',
+                'description' => 'skynettechnologies.aipdfaccessibilityremediation::lang.component.active_domain_desc',
                 'type'        => 'string',
                 'default'     => '',
             ],
@@ -44,14 +44,14 @@ class Remediation extends ComponentBase
     public function workspaceHtml(): string
     {
         return (string) file_get_contents(
-            plugins_path('skynettechnologies/skyneta11ypdfremediation/partials/workspace.htm')
+            plugins_path('skynettechnologies/aipdfaccessibilityremediation/partials/workspace.htm')
         );
     }
 
     /** Endpoints handed to the browser — never the auth code. */
     public function browserConfig(): string
     {
-        $config = (new ApiClient())->browserConfig(url('skyneta11ypdfremediation/session'));
+        $config = (new ApiClient())->browserConfig(url('aipdfaccessibilityremediation/session'));
 
         // A page-level override beats the pinned default, so one install can
         // host a page per site it manages.

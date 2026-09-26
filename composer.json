@@ -1,5 +1,5 @@
 {
-    "name": "skynettechnologies/skyneta11ypdfremediation-plugin",
+    "name": "skynettechnologies/aipdfaccessibilityremediation-plugin",
     "type": "october-plugin",
     "description": "SkynetA11y PDF Remediation — upload or crawl for PDFs, run AI accessibility remediation, review per-check findings and download WCAG / PDF-UA conformant files.",
     "homepage": "https://www.skynettechnologies.com/pdf-accessibility-remediation",

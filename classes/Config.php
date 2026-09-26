@@ -1,4 +1,4 @@
-<?php namespace SkynetTechnologies\SkynetA11yPDFRemediation\Classes;
+<?php namespace SkynetTechnologies\AiPdfAccessibilityRemediation\Classes;
 
 /**
  * Fixed connection settings and the values sent when provisioning an account.
@@ -9,7 +9,7 @@
  */
 class Config
 {
-    /** Origin of the SkynetA11y PDF Remediation backend. No trailing slash, no /api. */
+    /** Origin of the AI PDF Remediation backend. No trailing slash, no /api. */
     const API_BASE_URL = 'https://livepdfapi.skynettechnologies.us';
 
     /** Key for the provisioning endpoint, sent as `X-Api-Key`. */

@@ -1,4 +1,4 @@
-<?php namespace SkynetTechnologies\SkynetA11yPDFRemediation\Classes;
+<?php namespace SkynetTechnologies\AiPdfAccessibilityRemediation\Classes;
 
 use ApplicationException;
 use Lang;
@@ -38,7 +38,7 @@ class ApiClient
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             // Happens only with no request context and no configured override —
             // the service rejects a blank email, so say so before calling it.
-            throw new ApplicationException(Lang::get('skynettechnologies.skyneta11ypdfremediation::lang.errors.no_email'));
+            throw new ApplicationException(Lang::get('skynettechnologies.aipdfaccessibilityremediation::lang.errors.no_email'));
         }
 
         $response = $this->post(Config::API_BASE_URL . '/api/billing/provision-account', [
@@ -62,7 +62,7 @@ class ApiClient
             // The service explains itself well (bad key, invalid email); pass
             // that through rather than replacing it with something vaguer.
             throw new ApplicationException(
-                $data['error'] ?? Lang::get('skynettechnologies.skyneta11ypdfremediation::lang.errors.session')
+                $data['error'] ?? Lang::get('skynettechnologies.aipdfaccessibilityremediation::lang.errors.session')
             );
         }
 

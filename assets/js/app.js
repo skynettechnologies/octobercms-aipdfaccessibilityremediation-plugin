@@ -1,5 +1,5 @@
 /*
- * SkynetA11y PDF Remediation — section behaviour.
+ * AI PDF Accessibility Remediation — section behaviour.
  *
  * A vanilla-JS port of the module's three dashboard screens:
  *   DashUploadPage      → Upload tab
