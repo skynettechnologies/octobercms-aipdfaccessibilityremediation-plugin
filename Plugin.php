@@ -29,7 +29,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            \SkynetTechnologies\SkynetA11yPDFRemediation\Components\Remediation::class => 'aiPdfAccessibilityRemediation',
+            \SkynetTechnologies\SkynetA11yPDFRemediation\Components\Remediation::class => 'skynetA11yPDFRemediation',
         ];
     }
 
