@@ -2,7 +2,7 @@
 
 return [
     'plugin' => [
-        'name'        => 'AI PDF Accessibility Remediation',
+        'name'        => 'SkynetA11y PDF Remediation',
         'description' => 'Upload or crawl for PDFs, run AI accessibility remediation, and download WCAG / PDF-UA conformant files.',
     ],
     'nav' => [
@@ -20,7 +20,7 @@ return [
     ],
     'component' => [
         'name'               => 'PDF Remediation',
-        'description'        => 'Renders the AI PDF Accessibility Remediation workspace on a CMS page.',
+        'description'        => 'Renders the SkynetA11y PDF Remediation workspace on a CMS page.',
         'active_domain'      => 'Active domain',
         'active_domain_desc' => 'Domain the Website Scan tab crawls. Leave empty to use the account\'s first domain.',
     ],

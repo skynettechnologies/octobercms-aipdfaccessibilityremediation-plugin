@@ -1,12 +1,12 @@
-<?php namespace SkynetTechnologies\AiPdfAccessibilityRemediation;
+<?php namespace SkynetTechnologies\SkynetA11yPDFRemediation;
 
 use Backend;
 use System\Classes\PluginBase;
 
 /**
- * AI PDF Accessibility Remediation.
+ * SkynetA11y PDF Remediation.
  *
- * Brings the AI PDF Remediation workspace into October CMS: upload PDFs or
+ * Brings the SkynetA11y PDF Remediation workspace into October CMS: upload PDFs or
  * discover them by crawling a site, run AI accessibility remediation, review
  * the per-check findings and download the remediated files.
  *
@@ -18,8 +18,8 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'skynettechnologies.aipdfaccessibilityremediation::lang.plugin.name',
-            'description' => 'skynettechnologies.aipdfaccessibilityremediation::lang.plugin.description',
+            'name'        => 'skynettechnologies.skyneta11ypdfremediation::lang.plugin.name',
+            'description' => 'skynettechnologies.skyneta11ypdfremediation::lang.plugin.description',
             'author'      => 'Skynet Technologies USA LLC',
             'icon'        => 'icon-file-pdf-o',
             'homepage'    => 'https://www.skynettechnologies.com',
@@ -29,7 +29,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            \SkynetTechnologies\AiPdfAccessibilityRemediation\Components\Remediation::class => 'aiPdfAccessibilityRemediation',
+            \SkynetTechnologies\SkynetA11yPDFRemediation\Components\Remediation::class => 'aiPdfAccessibilityRemediation',
         ];
     }
 
@@ -42,34 +42,34 @@ class Plugin extends PluginBase
      */
     public function registerNavigation()
     {
-        $url = Backend::url('skynettechnologies/aipdfaccessibilityremediation/documents');
+        $url = Backend::url('skynettechnologies/skyneta11ypdfremediation/documents');
 
         return [
-            'aipdfaccessibilityremediation' => [
-                'label'       => 'skynettechnologies.aipdfaccessibilityremediation::lang.plugin.name',
+            'skyneta11ypdfremediation' => [
+                'label'       => 'skynettechnologies.skyneta11ypdfremediation::lang.plugin.name',
                 'url'         => $url,
                 'icon'        => 'icon-file-pdf-o',
-                'permissions' => ['skynettechnologies.aipdfaccessibilityremediation.*'],
+                'permissions' => ['skynettechnologies.skyneta11ypdfremediation.*'],
                 'order'       => 500,
 
                 'sideMenu' => [
                     'upload' => [
-                        'label'       => 'skynettechnologies.aipdfaccessibilityremediation::lang.nav.upload',
+                        'label'       => 'skynettechnologies.skyneta11ypdfremediation::lang.nav.upload',
                         'icon'        => 'icon-upload',
                         'url'         => $url,
-                        'permissions' => ['skynettechnologies.aipdfaccessibilityremediation.access_documents'],
+                        'permissions' => ['skynettechnologies.skyneta11ypdfremediation.access_documents'],
                     ],
                     'scan' => [
-                        'label'       => 'skynettechnologies.aipdfaccessibilityremediation::lang.nav.scan',
+                        'label'       => 'skynettechnologies.skyneta11ypdfremediation::lang.nav.scan',
                         'icon'        => 'icon-link',
                         'url'         => $url . '?tab=scan',
-                        'permissions' => ['skynettechnologies.aipdfaccessibilityremediation.access_documents'],
+                        'permissions' => ['skynettechnologies.skyneta11ypdfremediation.access_documents'],
                     ],
                     'remediated' => [
-                        'label'       => 'skynettechnologies.aipdfaccessibilityremediation::lang.nav.remediated',
+                        'label'       => 'skynettechnologies.skyneta11ypdfremediation::lang.nav.remediated',
                         'icon'        => 'icon-file-text-o',
                         'url'         => $url . '?tab=remediated',
-                        'permissions' => ['skynettechnologies.aipdfaccessibilityremediation.access_documents'],
+                        'permissions' => ['skynettechnologies.skyneta11ypdfremediation.access_documents'],
                     ],
                 ],
             ],
@@ -89,8 +89,8 @@ class Plugin extends PluginBase
      */
     public function registerSettings()
     {
-        $url = Backend::url('skynettechnologies/aipdfaccessibilityremediation/documents');
-        $lang = 'skynettechnologies.aipdfaccessibilityremediation::lang.';
+        $url = Backend::url('skynettechnologies/skyneta11ypdfremediation/documents');
+        $lang = 'skynettechnologies.skyneta11ypdfremediation::lang.';
         $items = [];
 
         $tabs = [
@@ -100,7 +100,7 @@ class Plugin extends PluginBase
         ];
 
         foreach ($tabs as $code => [$query, $icon, $order]) {
-            $items['aipdfaccessibilityremediation_' . $code] = [
+            $items['skyneta11ypdfremediation_' . $code] = [
                 'label'       => $lang . 'nav.' . $code,
                 'description' => $lang . 'settings.' . $code,
                 'category'    => $lang . 'plugin.name',
@@ -108,7 +108,7 @@ class Plugin extends PluginBase
                 'url'         => $url . $query,
                 'order'       => $order,
                 'keywords'    => 'pdf accessibility remediation ada wcag pdf/ua',
-                'permissions' => ['skynettechnologies.aipdfaccessibilityremediation.access_documents'],
+                'permissions' => ['skynettechnologies.skyneta11ypdfremediation.access_documents'],
             ];
         }
 
@@ -118,9 +118,9 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'skynettechnologies.aipdfaccessibilityremediation.access_documents' => [
-                'tab'   => 'skynettechnologies.aipdfaccessibilityremediation::lang.plugin.name',
-                'label' => 'skynettechnologies.aipdfaccessibilityremediation::lang.permissions.access_documents',
+            'skynettechnologies.skyneta11ypdfremediation.access_documents' => [
+                'tab'   => 'skynettechnologies.skyneta11ypdfremediation::lang.plugin.name',
+                'label' => 'skynettechnologies.skyneta11ypdfremediation::lang.permissions.access_documents',
             ],
         ];
     }

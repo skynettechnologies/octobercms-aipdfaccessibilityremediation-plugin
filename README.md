@@ -1,4 +1,4 @@
-The **AI PDF Accessibility Remediation Application** brings **PDF Accessibility Remediation for WCAG & PDF/UA Compliance** directly into your October CMS backend. It is both a **PDF Accessibility Checker** and an **AI Remediation Tool**: upload documents or crawl your website for them, let AI repair the accessibility barriers automatically, review every check that was applied, and download conformant files — without leaving your CMS.
+The **SkynetA11y PDF Remediation Application** brings **PDF Accessibility Remediation for WCAG & PDF/UA Compliance** directly into your October CMS backend. It is both a **PDF Accessibility Checker** and an **AI Remediation Tool**: upload documents or crawl your website for them, let AI repair the accessibility barriers automatically, review every check that was applied, and download conformant files — without leaving your CMS.
 
 It fixes the barriers that make PDFs unusable with assistive technology: missing tags, incorrect reading order, inaccessible forms and tables, images without alternate text, and absent document structure, language and metadata.
 
@@ -15,7 +15,7 @@ This plugin is designed for:
 
 [**Start with a free AI remediation trial — up to 5 pages!**](https://www.skynettechnologies.com/pdf-accessibility-remediation)
 
-## Why AI PDF Accessibility Remediation?
+## Why SkynetA11y PDF Remediation?
 
 PDFs are where accessibility compliance quietly fails. A site can pass every
 page-level audit and still publish hundreds of untagged documents — reports,
@@ -28,7 +28,7 @@ project.
 
 ## Key Features
 
-- **AI PDF Remediation** – Automated repair of tags, reading order, alt text, headings, tables and metadata.
+- **SkynetA11y PDF Remediation** – Automated repair of tags, reading order, alt text, headings, tables and metadata.
 - **PDF Accessibility Checker** – Every check reported individually, expandable to a plain-language explanation and a before/after example.
 - **Upload or Crawl** – Add files by drag and drop, add a PDF by URL, or sweep your website for every linked PDF.
 - **Free Trial** – The free plan covers your first 5 pages; paid plans scale from 50 to 10,000 pages.
@@ -57,7 +57,7 @@ project.
 
 1. Visit [PDF Accessibility Remediation](https://www.skynettechnologies.com/pdf-accessibility-remediation).
 2. Install the plugin (see **Setup** below).
-3. Open **AI PDF Accessibility Remediation** in the October backend — your site is registered automatically on the free plan.
+3. Open **SkynetA11y PDF Remediation** in the October backend — your site is registered automatically on the free plan.
 4. Add PDFs, remediate, and download the results.
 
 ## Who Can Benefit?
@@ -74,26 +74,26 @@ project.
 
 ## Install Plugin
 
-- Plugin:install - downloads and installs the plugin by its name. The next example will install a plugin called SkynetTechnologies.AiPdfAccessibilityRemediation.
+- Plugin:install - downloads and installs the plugin by its name. The next example will install a plugin called SkynetTechnologies.SkynetA11yPDFRemediation.
 
 ``` bash
-php artisan plugin:install skynettechnologies.aipdfaccessibilityremediation
+php artisan plugin:install skynettechnologies.skyneta11ypdfremediation
 ```
 
 - You may install a plugin from a remote source using the --from option.
 
 ``` bash
-php artisan plugin:install skynettechnologies.aipdfaccessibilityremediation --from=git@github.com:skynettechnologies/octobercms-aipdfaccessibilityremediation.git
+php artisan plugin:install skynettechnologies.skyneta11ypdfremediation --from=git@github.com:skynettechnologies/octobercms-skyneta11ypdfremediation.git
 ```
 
 - Use the --want option to specify a target branch or version.
 
 ``` bash
-php artisan plugin:install skynettechnologies.aipdfaccessibilityremediation --from=git@github.com:skynettechnologies/octobercms-aipdfaccessibilityremediation.git --want=dev-main
+php artisan plugin:install skynettechnologies.skyneta11ypdfremediation --from=git@github.com:skynettechnologies/octobercms-skyneta11ypdfremediation.git --want=dev-main
 ```
 
 - To install from a copy of this repository, place the plugin at
-  `plugins/skynettechnologies/aipdfaccessibilityremediation` and run:
+  `plugins/skynettechnologies/skyneta11ypdfremediation` and run:
 
 ``` bash
 php artisan october:migrate
@@ -111,7 +111,7 @@ To avoid CORS policy issues, ensure the following URLs are allowed in your websi
 
 | **Domain**                                   | **Description**                     | **Usage**                              |
 |----------------------------------------------|-------------------------------------|----------------------------------------|
-| `https://livepdfapi.skynettechnologies.us`  | AI PDF Remediation API              | Documents, remediation jobs, downloads |
+| `https://livepdfapi.skynettechnologies.us`  | SkynetA11y PDF Remediation API | Documents, remediation jobs, downloads |
 | `https://ada.skynettechnologies.us` | All in One Accessibility® Dashboard | Plan upgrades via autologin            |
 
 ## Instructions
@@ -124,15 +124,15 @@ To avoid CORS policy issues, ensure the following URLs are allowed in your websi
 ### Configuration
 
 - There is no settings screen. Everything the plugin needs is derived from your site, so it works the moment it is
-  installed. Open **AI PDF Accessibility Remediation** from the main menu to
+  installed. Open **SkynetA11y PDF Remediation** from the main menu to
   start using it.
 
 
 ## Screenshots
 
-![AI_PDF_Accessibility_Remediation_Image_1](https://www.skynettechnologies.com/sites/default/files/AiPdfAccessibilityRemediation/AI_PDF_Accessibility_Remediation_Image_1.png)
-![AI_PDF_Accessibility_Remediation_Image_2](https://www.skynettechnologies.com/sites/default/files/AiPdfAccessibilityRemediation/AI_PDF_Accessibility_Remediation_Image_2.png)
-![AI_PDF_Accessibility_Remediation_Image_3](https://www.skynettechnologies.com/sites/default/files/AiPdfAccessibilityRemediation/AI_PDF_Accessibility_Remediation_Image_3.png)
+![SkynetA11y-PDF-Remediation-Feature1](https://www.skynettechnologies.com/sites/default/files/SkynetA11yPDFRemediation/SkynetA11y-PDF-Remediation-Feature1.jpg)
+![SkynetA11y-PDF-Remediation-Feature2](https://www.skynettechnologies.com/sites/default/files/SkynetA11yPDFRemediation/SkynetA11y-PDF-Remediation-Feature2.jpg)
+![SkynetA11y-PDF-Remediation-Feature3](https://www.skynettechnologies.com/sites/default/files/SkynetA11yPDFRemediation/SkynetA11y-PDF-Remediation-Feature3.jpg)
 
 
 ## Submit a Support Request
@@ -152,10 +152,10 @@ Partner with us as an agency to provide comprehensive accessibility solutions to
 
 ### **[Accessibility Affiliate Partnership](https://www.skynettechnologies.com/affiliate-partner)**
 
-Join our affiliate program and earn hefty commissions by promoting AI PDF Accessibility Remediation. Share our accessibility solution within your network and help businesses improve their document accessibility while generating additional revenue.
+Join our affiliate program and earn hefty commissions by promoting SkynetA11y PDF Remediation. Share our accessibility solution within your network and help businesses improve their document accessibility while generating additional revenue.
 
 For more details, please visit **[Accessibility Partnership Opportunities Page](https://www.skynettechnologies.com/partner-program)**.
 
 ## Credits
 
-This **AI PDF Accessibility Remediation Application** is developed and maintained by **[Skynet Technologies USA LLC](https://www.skynettechnologies.com)**
+This **SkynetA11y PDF Remediation Application** is developed and maintained by **[Skynet Technologies USA LLC](https://www.skynettechnologies.com)**

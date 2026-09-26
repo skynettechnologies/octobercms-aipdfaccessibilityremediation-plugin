@@ -1,8 +1,8 @@
-<?php namespace SkynetTechnologies\AiPdfAccessibilityRemediation\Controllers;
+<?php namespace SkynetTechnologies\SkynetA11yPDFRemediation\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
-use SkynetTechnologies\AiPdfAccessibilityRemediation\Classes\ApiClient;
+use SkynetTechnologies\SkynetA11yPDFRemediation\Classes\ApiClient;
 
 /**
  * The remediation workspace inside the backend.
@@ -12,7 +12,7 @@ use SkynetTechnologies\AiPdfAccessibilityRemediation\Classes\ApiClient;
  */
 class Documents extends Controller
 {
-    public $requiredPermissions = ['skynettechnologies.aipdfaccessibilityremediation.access_documents'];
+    public $requiredPermissions = ['skynettechnologies.skyneta11ypdfremediation.access_documents'];
 
     /** Bump with the plugin version to force browsers to refetch the assets. */
     const ASSET_VERSION = '1.0.0';
@@ -24,20 +24,20 @@ class Documents extends Controller
         // The side menu mirrors the in-page tabs, so the highlighted item has to
         // follow `?tab=` rather than being fixed.
         BackendMenu::setContext(
-            'SkynetTechnologies.AiPdfAccessibilityRemediation',
-            'aipdfaccessibilityremediation',
+            'SkynetTechnologies.SkynetA11yPDFRemediation',
+            'skyneta11ypdfremediation',
             self::activeTab()
         );
 
         // Versioned so a browser cannot serve a stale api.js after an upgrade —
         // the symptom of that is an old cached session surviving a config change.
         $v = self::ASSET_VERSION;
-        $base = '/plugins/skynettechnologies/aipdfaccessibilityremediation/assets';
+        $base = '/plugins/skynettechnologies/skyneta11ypdfremediation/assets';
 
-        $this->addCss($base . '/css/pdf-remediation.css?v=' . $v, 'SkynetTechnologies.AiPdfAccessibilityRemediation');
-        $this->addJs($base . '/js/icons.js?v=' . $v, 'SkynetTechnologies.AiPdfAccessibilityRemediation');
-        $this->addJs($base . '/js/api.js?v=' . $v, 'SkynetTechnologies.AiPdfAccessibilityRemediation');
-        $this->addJs($base . '/js/app.js?v=' . $v, 'SkynetTechnologies.AiPdfAccessibilityRemediation');
+        $this->addCss($base . '/css/pdf-remediation.css?v=' . $v, 'SkynetTechnologies.SkynetA11yPDFRemediation');
+        $this->addJs($base . '/js/icons.js?v=' . $v, 'SkynetTechnologies.SkynetA11yPDFRemediation');
+        $this->addJs($base . '/js/api.js?v=' . $v, 'SkynetTechnologies.SkynetA11yPDFRemediation');
+        $this->addJs($base . '/js/app.js?v=' . $v, 'SkynetTechnologies.SkynetA11yPDFRemediation');
     }
 
     /** The tab named in `?tab=`, defaulting to Upload. */
@@ -50,10 +50,10 @@ class Documents extends Controller
 
     public function index()
     {
-        $this->pageTitle = 'skynettechnologies.aipdfaccessibilityremediation::lang.plugin.name';
+        $this->pageTitle = 'skynettechnologies.skyneta11ypdfremediation::lang.plugin.name';
 
         $config = (new ApiClient())->browserConfig(
-            \Backend::url('skynettechnologies/aipdfaccessibilityremediation/documents/session')
+            \Backend::url('skynettechnologies/skyneta11ypdfremediation/documents/session')
         );
         $config['initialTab'] = self::activeTab();
 

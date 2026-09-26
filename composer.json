@@ -1,7 +1,7 @@
 {
-    "name": "skynettechnologies/aipdfaccessibilityremediation-plugin",
+    "name": "skynettechnologies/skyneta11ypdfremediation-plugin",
     "type": "october-plugin",
-    "description": "AI PDF Accessibility Remediation — upload or crawl for PDFs, run AI accessibility remediation, review per-check findings and download WCAG / PDF-UA conformant files.",
+    "description": "SkynetA11y PDF Remediation — upload or crawl for PDFs, run AI accessibility remediation, review per-check findings and download WCAG / PDF-UA conformant files.",
     "homepage": "https://www.skynettechnologies.com/pdf-accessibility-remediation",
     "license": "MIT",
     "authors": [

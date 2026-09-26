@@ -17,7 +17,7 @@
    * back to when it is used outside October.
    * ------------------------------------------------------------------ */
   var CONFIG = {
-    /** Origin of the AI PDF Remediation backend. Empty keeps requests same-origin. */
+    /** Origin of the SkynetA11y PDF Remediation backend. Empty keeps requests same-origin. */
     apiBaseUrl: 'https://livepdfapi.skynettechnologies.us',
     /**
      * October's session endpoint. Sign-in is one POST to our own server, which
